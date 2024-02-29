@@ -1,0 +1,5 @@
+export default {
+    plainText: (date, level, category, message) => {
+        return `Date: ${date}, category:${category}, level:${level}, message:${JSON.stringify(message)}\n`
+    },
+}
