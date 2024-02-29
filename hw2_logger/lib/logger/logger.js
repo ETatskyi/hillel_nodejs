@@ -1,6 +1,6 @@
-import config from './config.js';
-import {scoreLevel, level} from './constants.js';
-import * as appenderStrategy from './appenderStrategy.js'
+import config from './config/config.js';
+import { scoreLevel, level } from './config/constants.js';
+import * as appenderStrategy from './appenders/appenderStrategy.js'
 
 const logger = (category) => ({
     info: (message) => {
@@ -8,6 +8,12 @@ const logger = (category) => ({
     },
     warn: (message) => {
         executeLog(level.WARN, category, message)
+    },
+    debug: (message) => {
+        executeLog(level.DEBUG, category, message);
+    },
+    trace: (message) => {
+        executeLog(level.TRACE, category, message);
     },
     error: (message) => {
         executeLog(level.ERROR, category, message)
