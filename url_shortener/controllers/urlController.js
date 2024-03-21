@@ -14,7 +14,7 @@ urlRouter
         urls[urlIndex].visits++
 
         dbUpdate('urls', urls)
-        res.status(304).redirect(urls[urlIndex].url)
+        res.status(301).redirect(urls[urlIndex].url)
     })
     .post('/', (req, res) => {
         const validationError = validateUrlError(req.body)
