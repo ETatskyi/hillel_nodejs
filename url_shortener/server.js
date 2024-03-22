@@ -14,5 +14,6 @@ server.use(authMiddleware)
 
 server.use("/user", userController)
 server.use("/code", urlController)
+server.use((err, req, res)=> res.status(500).send(err.message))
 
 export { server }
