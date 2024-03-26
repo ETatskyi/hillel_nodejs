@@ -1,0 +1,28 @@
+#main {
+    display:   flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#new-user-form {
+    display:        flex;
+    flex-direction: column;
+}
+
+#users-list {
+    display:        flex;
+    flex-direction: column;
+}
+
+.input-line {
+    display:        flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.form-button {
+    min-width: 80%;
+    margin: 0 auto;
+}

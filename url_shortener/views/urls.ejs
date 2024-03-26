@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url-shortener</title>
+</head>
+
+<body>
+    <ul>
+        <% for(let url of urls){%>
+            <li>Name: <%= url.name%>
+                Redirect to: <%= url.url%>
+                Visits: <%= url.visits%>
+            </li>
+        <% } %>
+    </ul>
+</body>
+
+</html>
