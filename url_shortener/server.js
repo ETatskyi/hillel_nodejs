@@ -1,19 +1,16 @@
 import express from 'express'
 import createDB from './simpleDB/createDB.js'
-
-import userController from './controllers/userController.js'
-import urlController from './controllers/urlController.js'
-
-import authMiddleware from './midlewares/authMiddleware.js'
+import setupApi from './setup/setupApi.js'
+import setupViews from './setup/setupViews.js'
+import setupMidlewares from './setup/setupMidlewares.js'
 
 createDB()
 const server = express()
 
-server.use(express.json())
-server.use(authMiddleware)
+setupMidlewares(server)
+setupApi(server)
+setupViews(server)
 
-server.use("/user", userController)
-server.use("/code", urlController)
-server.use((err, req, res)=> res.status(500).send(err.message))
+// server.use((err, req, res, next) => { return res.status(500).send(err.message) })
 
 export { server }

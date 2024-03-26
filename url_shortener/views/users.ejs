@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url-shortener</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="new-user-form">
+            <div class="input-line">
+                <label for="name">Name:</label>
+                <input name="name" type="text">
+            </div>
+            <div class="input-line">
+                <label for="password">Password:</label>
+                <input name="password" type="password">
+            </div>
+            <div class="input-line">
+                <button id="user-register-button" class="form-button">Create new user</button>
+            </div>
+        </div>
+        <div id="users-list">
+            <ul>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    const userRegButton = document.querySelector('button#user-register-button')
+    const userList = document.querySelector('#users-list>ul')
+    const path = '.' + '<%=apiRoute%>' + '/user'
+
+    function registerUser() {
+
+        const userData = {
+            name: document.querySelector('input[name=name]').value,
+            password: document.querySelector('input[name=password]').value,
+        }
+
+
+        fetch(path, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert('User ' + data.name + ' created')
+                updateUsersInfo()
+            })
+            .catch(error => {
+                console.error('Error:', error)
+            })
+    }
+
+    function updateUsersInfo() {
+        fetch(path + '/all')
+            .then(res => res.json())
+            .then(data => {
+                userList.innerHTML = data.map(user => `<li>id:${user.id}  name: ${user.name}</li>`).join('')
+            })
+    }
+
+    userRegButton.addEventListener('click', registerUser)
+    updateUsersInfo()
+</script>
+
+</html>

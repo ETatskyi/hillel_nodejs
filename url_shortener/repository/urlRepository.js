@@ -27,7 +27,11 @@ export default {
         dbUpdate('urls', urls)
 
         return urls[urlIndex].url
-    }
+    },
+    getUrlByUserId: (id) => {
+        const urls = dbRead('urls')
+        return urls.filter(url => url.user == id)
+    },
 }
 
 function validateUrlError(data) {
